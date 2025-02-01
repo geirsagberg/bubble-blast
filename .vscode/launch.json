@@ -1,0 +1,67 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in library 'bubble_blast'",
+      "cargo": {
+        "args": ["test", "--no-run", "--lib", "--package=bubble-blast"],
+        "filter": {
+          "name": "bubble_blast",
+          "kind": "lib"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "DYLD_LIBRARY_PATH": "${userHome}/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/aarch64-apple-darwin/lib",
+        "CARGO_MANIFEST_DIR": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug executable 'bubble-blast'",
+      "cargo": {
+        "args": ["build", "--bin=bubble-blast", "--package=bubble-blast"],
+        "filter": {
+          "name": "bubble-blast",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "DYLD_LIBRARY_PATH": "${userHome}/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/aarch64-apple-darwin/lib",
+        "CARGO_MANIFEST_DIR": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in executable 'bubble-blast'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--bin=bubble-blast",
+          "--package=bubble-blast"
+        ],
+        "filter": {
+          "name": "bubble-blast",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "DYLD_LIBRARY_PATH": "${userHome}/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/aarch64-apple-darwin/lib",
+        "CARGO_MANIFEST_DIR": "${workspaceFolder}"
+      }
+    }
+  ]
+}
