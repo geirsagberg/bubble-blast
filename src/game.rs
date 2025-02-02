@@ -367,7 +367,6 @@ struct Enemy {
 #[derive(Component)]
 enum EnemyVariant {
     Floater,
-    Seeker,
     // Add more variants as we implement them
 }
 
@@ -822,32 +821,6 @@ fn draw_enemies(mut gizmos: Gizmos, query: Query<(&Transform, &Enemy, Option<&Gr
                     let outer = pos + dir * ENEMY_RADIUS * 1.2 * scale;
                     gizmos.line_2d(inner, outer, dark_color.with_alpha(alpha * 0.8));
                 }
-            }
-            EnemyVariant::Seeker => {
-                // Triangular body
-                let forward = Vec2::Y * scale;
-                let points = [
-                    pos + forward * ENEMY_RADIUS * 1.2,
-                    pos + forward.rotate(Vec2::from_angle(2.3)) * ENEMY_RADIUS,
-                    pos + forward.rotate(Vec2::from_angle(-2.3)) * ENEMY_RADIUS,
-                ];
-
-                // Fill
-                gizmos.circle_2d(
-                    pos,
-                    ENEMY_RADIUS * 0.7 * scale,
-                    ORANGE.with_alpha(alpha * 0.5),
-                );
-
-                // Outline
-                for i in 0..points.len() {
-                    let start = points[i];
-                    let end = points[(i + 1) % points.len()];
-                    gizmos.line_2d(start, end, ORANGE.with_alpha(alpha));
-                }
-
-                // Core
-                gizmos.circle_2d(pos, ENEMY_RADIUS * 0.3 * scale, YELLOW.with_alpha(alpha));
             }
         }
     }
